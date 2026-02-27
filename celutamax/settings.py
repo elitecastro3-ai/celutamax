@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=ana=4*2qvhn0=@7)&k@snm=7_)wfg#57s!mlr!s%lw=ho_4zl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'celutamax-2.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'celutamax-motors-brokers.onrender.com',]
 
 
 # Application definition
