@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load humanize %}
+
+{% block content %}
+
+<div style="padding:40px; max-width:900px; margin:auto;">
+
+    <h1>{{ vehicle.title }}</h1>
+
+    {% if vehicle.image %}
+        <img src="{{ vehicle.image.url }}"
+             style="width:100%; max-width:600px; border-radius:8px; margin-bottom:20px;">
+    {% endif %}
+
+    <div style="font-size:18px; line-height:1.8;">
+        <p><strong>Brand:</strong> {{ vehicle.brand }}</p>
+        <p><strong>Model:</strong> {{ vehicle.model }}</p>
+        <p><strong>Year:</strong> {{ vehicle.year }}</p>
+        <p><strong>Mileage:</strong> {{ vehicle.mileage }} km</p>
+        <p><strong>Price:</strong> UGX {{ vehicle.price|intcomma }}</p>
+    </div>
+
+    <br>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/256706018343?text=Hello%20I%20am%20interested%20in%20the%20{{ vehicle.name }}%20priced%20at%20UGX%20{{ vehicle.price }}"
+       target="_blank"
+       style="display:inline-block;
+              background:#25D366;
+              color:white;
+              padding:12px 18px;
+              text-decoration:none;
+              border-radius:6px;
+              font-size:16px;">
+        Inquire on WhatsApp
+    </a>
+
+    <br><br>
+
+    <a href="{% url 'vehicles' %}" style="text-decoration:none;">
+        ← Back to Vehicles
+    </a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Our Vehicles</h1>
+
+<!-- Search Form -->
+<form method="get" action="{% url 'vehicles' %}" style="margin-bottom: 20px;">
+    <input 
+        type="text" 
+        name="q" 
+        placeholder="Search vehicles..." 
+        value="{{ request.GET.q|default:'' }}" 
+        style="padding: 8px; width: 250px;"
+    >
+    <button type="submit" style="padding: 8px 12px;">Search</button>
+</form>
+
+<!-- Vehicle Listings -->
+{% if vehicles %}
+    <div class="vehicle-list" style="display: flex; flex-wrap: wrap; gap: 20px;">
+        {% for vehicle in vehicles %}
+            <div class="vehicle-card" style="border: 1px solid #ccc; padding: 10px; width: 250px;">
+                {% if vehicle.image %}
+                    <img src="{{ vehicle.image.url }}" alt="{{ vehicle.name }}" style="width: 100%; height: auto;">
+                {% endif %}
+                <h3>{{ vehicle.title }}</h3>
+                <p>Model: {{ vehicle.model }}</p>
+                <p>Mileage: {{ vehicle.mileage }} km</p>
+                <p>Year: {{ vehicle.year }}</p>
+                <p>Price: UGX{{ vehicle.price }}</p>
+                <a href="{% url 'vehicle_detail' vehicle.id %}">View Details</a>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No vehicles found matching your search.</p>
+{% endif %}
+
+{% endblock %}
