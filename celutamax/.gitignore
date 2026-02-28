@@ -1,0 +1,4 @@
+celutamax/venv/
+__pycache__/
+*.pyc
+.env
