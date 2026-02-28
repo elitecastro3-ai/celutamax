@@ -14,3 +14,7 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'celutamax.settings')
 
 application = get_wsgi_application()
+try:
+    from .create_superuser import *
+except Exception as e:
+    print("Error creating superuser:", e)
