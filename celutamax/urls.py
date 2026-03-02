@@ -6,11 +6,17 @@ from vehicles.views import home, vehicle_list, vehicle_detail, about, contact
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', home, name='home'),   # THIS is the homepage
+    path('', home, name='home'),   # Homepage
     path('vehicles/', vehicle_list, name='vehicles'),
     path('vehicles/<int:pk>/', vehicle_detail, name='vehicle_detail'),
     path('about/', about, name='about'),
     path('contact/', contact, name='contact'),
 ]
 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Serve media files during development
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Serve static files in development (optional, since Whitenoise handles it in production)
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

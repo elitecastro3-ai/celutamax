@@ -7,7 +7,8 @@ class Vehicle(models.Model):
     price = models.DecimalField(max_digits=12, decimal_places=2)
     mileage = models.IntegerField()
     description = models.TextField()
-    image = models.ImageField(upload_to='vehicles/')
+    image = models.ImageField(upload_to='vehicles/', blank=True, null=True) 
+    
 
     def __str__(self):
         return self.title
