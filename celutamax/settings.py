@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'whitenoise.runserver_nostatic',
     'cloudinary',
     'cloudinary_storage',
     
@@ -155,6 +156,8 @@ STORAGES = {
     "default": {
         "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
     },
+    "staticfiles": {
+    "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
 } 
 
 
