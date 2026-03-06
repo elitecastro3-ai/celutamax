@@ -90,13 +90,12 @@ STATICFILES_DIR = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': { dj_database_url.config(
+    'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL')
+        conn_max_age=600
     )
         
     }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
