@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=ana=4*2qvhn0=@7)&k@snm=7_)wfg#57s!mlr!s%lw=ho_4zl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'False'
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 ALLOWED_HOSTS = os.environ.get(
@@ -90,9 +90,10 @@ STATICFILES_DIR = [BASE_DIR / 'static']
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / "db.sqlite3",
+    'default': { dj_database_url.config(
+        default=os.environ.get('DATABASE_URL')
+    )
+        
     }
 }
 
