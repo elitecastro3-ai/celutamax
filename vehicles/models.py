@@ -4,7 +4,7 @@ class Vehicle(models.Model):
     title = models.CharField(max_length=200)
     brand = models.CharField(max_length=100)
     year = models.IntegerField()
-    price = models.DecimalField(max_digits=12, decimal_places=2)
+    price = models.DecimalField(max_digits=12, decimal_places=0)
     mileage = models.IntegerField()
     description = models.TextField()
     image = models.ImageField(upload_to='vehicles/', blank=True, null=True) 
@@ -12,5 +12,9 @@ class Vehicle(models.Model):
 
     def __str__(self):
         return self.title
+
+
+    def get_absolute_url(self):
+        return reverse("vehicle_detail", agr=[self.id])    
 
 # Create your models here.
