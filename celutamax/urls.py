@@ -3,9 +3,20 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from vehicles.views import home, vehicle_list, vehicle_detail, about, contact
+from django.contrib.sitemaps.views import sitemaps
+from django.contrib.sitemaps import GenericSitemaps
+from vehicle.models import Vehicle
+
+
+sitemaps = {
+    "vehicles": GenericSitemap({
+        "queryset": Vehicle.objects.all(),
+     })   
+}
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("sitemap.xml", sitemap,{"sitemaps":sitemaps}, name="sitemap"),
     path('', home, name='home'),   # Homepage
     path('vehicles/', vehicle_list, name='vehicles'),
     path('vehicles/<int:pk>/', vehicle_detail, name='vehicle_detail'),
