@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 from vehicles.views import home, vehicle_list, vehicle_detail, about, contact
 from django.contrib.sitemaps.views import sitemap
 from django.contrib.sitemaps import GenericSitemap
-from vehicle.models import Vehicle
+from vehicles.models import Vehicle
 
 
 sitemaps = {
