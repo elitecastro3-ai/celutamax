@@ -11,6 +11,7 @@ from vehicles.models import Vehicle
 sitemaps = {
     "vehicles": GenericSitemap({
         "queryset": Vehicle.objects.all(),
+        "date_field": "created_at"
      })   
 }
 
