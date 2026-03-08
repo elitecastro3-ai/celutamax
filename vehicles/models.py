@@ -18,6 +18,6 @@ class Vehicle(models.Model):
     
      
     def get_absolute_url(self):
-        return reverse("vehicle_detail", agrs=[self.pk])    
+        return reverse("vehicle_detail", args=[self.pk])    
 
 # Create your models here.
