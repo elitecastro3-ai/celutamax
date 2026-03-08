@@ -13,7 +13,7 @@ sitemaps = {
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("sitemap.xml", sitemap,{"sitemaps":sitemaps}, name="sitemap"),
+    path("sitemap.xml", sitemap, {"sitemaps":sitemaps}, name="sitemap"),
     path('', home, name='home'),   # Homepage
     path('vehicles/', vehicle_list, name='vehicles'),
     path('vehicles/<int:pk>/', vehicle_detail, name='vehicle_detail'),
