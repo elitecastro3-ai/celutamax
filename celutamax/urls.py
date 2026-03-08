@@ -4,15 +4,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from vehicles.views import home, vehicle_list, vehicle_detail, about, contact
 from django.contrib.sitemaps.views import sitemap
-from django.contrib.sitemaps import GenericSitemap
-from vehicles.models import Vehicle
+from vehicles.sitemaps import VehicleSitemap
 
 
 sitemaps = {
-    "vehicles": GenericSitemap({
-        "queryset": Vehicle.objects.all(),
-        "date_field": "created_at"
-     })   
+    "vehicles": VehicleSitemap,
 }
 
 urlpatterns = [
