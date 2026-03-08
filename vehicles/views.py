@@ -16,8 +16,7 @@ def vehicle_list(request):
             Q(title__icontains=query) |
             Q(brand__icontains=query) |
             Q(description__icontains=query) |
-            Q(year__icontains=query) |
-            Q(mileage__icontains=query)
+            
         )
     else:
         vehicles = Vehicle.objects.all()
