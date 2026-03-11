@@ -1,4 +1,3 @@
-
 {% extends 'base.html' %}
 {% load static %}
 
@@ -7,13 +6,13 @@
 <header>
     <h2>Celutamax Motors and Brokers</h2>
 </header>
-<section class="hero">
 
-<img src="{% static 'images/mercedes.jpg' %}">
+<section class="hero" style="background-image: url('{% static 'images/mercedes.jpg' %}');">
 
 <div class="hero-text">
 <h1>Premium Vehicles. Trusted Service.</h1>
-<p>Your reliable partner in quality brandnew used and imported Cars.</p>
+
+<p>Your reliable partner in quality brand new, used and imported cars.</p>
 
 <a href="{% url 'vehicles' %}" class="btn">Browse Vehicles</a>
 
@@ -29,22 +28,22 @@
 <div class="car-grid">
 
 <div class="car-card">
-<img src="{% static 'images/forester.jpg' %}">
+<img src="{% static 'images/forester.jpg' %}" alt="Forester">
 <p>Forester</p>
 </div>
 
 <div class="car-card">
-<img src="{% static 'images/harrier.jpg' %}">
+<img src="{% static 'images/harrier.jpg' %}" alt="Harrier">
 <p>Harrier</p>
 </div>
 
 <div class="car-card">
-<img src="{% static 'images/noah.jpg' %}">
+<img src="{% static 'images/noah.jpg' %}" alt="Noah">
 <p>Noah</p>
 </div>
 
 <div class="car-card">
-<img src="{% static 'images/mazda.jpg' %}">
+<img src="{% static 'images/mazda.jpg' %}" alt="Mazda">
 <p>Mazda</p>
 </div>
 
