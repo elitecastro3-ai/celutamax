@@ -28,6 +28,7 @@
                 <p>Mileage: {{ vehicle.mileage }} km</p>
                 <p>Year: {{ vehicle.year }}</p>
                 <p>Price: UGX{{ vehicle.price }}</p>
+                <p>Description: {{ vehicle.description }}</p> 
                 <a href="{% url 'vehicle_detail' vehicle.id %}">View Details</a>
             </div>
         {% endfor %}
