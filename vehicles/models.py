@@ -18,6 +18,17 @@ class Vehicle(models.Model):
     
      
     def get_absolute_url(self):
-        return reverse("vehicle_detail", args=[self.pk])    
+        return reverse("vehicle_detail", args=[self.pk]) 
+
+class VehicleImage(models.Model):
+    vehicle = models.ForeignKey(
+        Vehicle,
+        on_delete=models.CASCADE,
+        related_name='images'
+    )
+    image = models.ImageField(upload_to='vehicles/')
+
+    def __str__(self):
+        return f"Image for {self.vehicle.title}"       
 
 # Create your models here.

@@ -3,49 +3,58 @@
 
 {% block content %}
 
-<div style="padding:40px; max-width:900px; margin:auto;">
+<div style="padding:30px; max-width:1000px; margin:auto;">
 
-    <h1>{{ vehicle.title }}</h1>
+    <h1 style="margin-bottom:20px;">{{ vehicle.title }}</h1>
 
+    <!-- MAIN IMAGE -->
     {% if vehicle.image %}
         <img src="{{ vehicle.image.url }}"
-             style="width:100%; max-width:600px; border-radius:8px; margin-bottom:20px;">
+             style="width:100%; max-height:400px; object-fit:cover; border-radius:10px;">
     {% endif %}
 
-    <div style="font-size:18px; line-height:1.8;">
+    <!-- GALLERY (MULTIPLE IMAGES) -->
+    <div class="car-gallery">
+        {% for img in vehicle.images.all %}
+            <img src="{{ img.image.url }}" class="gallery-img">
+        {% endfor %}
+    </div>
+
+    <!-- DETAILS -->
+    <div style="font-size:18px; line-height:1.8; margin-top:20px;">
         <p><strong>Brand:</strong> {{ vehicle.brand }}</p>
-          <p><strong>Year:</strong> {{ vehicle.year }}</p>
+        <p><strong>Year:</strong> {{ vehicle.year }}</p>
         <p><strong>Mileage:</strong> {{ vehicle.mileage }} km</p>
         <p><strong>Price:</strong> UGX {{ vehicle.price|intcomma }}</p>
         <p><strong>Description:</strong> {{ vehicle.description }}</p>
     </div>
 
+    <!-- WHATSAPP BUTTONS -->
+    <div style="margin-top:25px;">
+        
+        <a href="https://wa.me/256708866140?text=Hello,%20I%20am%20interested%20in%20the%20{{ vehicle.year }}%20{{ vehicle.title }}%20listed%20on%20Celutamax%20Motors%20for%20UGX%20{{ vehicle.price|intcomma }}."
+        target="_blank"
+        class="whatsapp-btn">
+        Chat with Cedric
+        </a>
+
+        <a href="https://wa.me/256709427045?text=Hello,%20I%20am%20interested%20in%20the%20{{ vehicle.year }}%20{{ vehicle.title }}%20listed%20on%20Celutamax%20Motors%20for%20UGX%20{{ vehicle.price|intcomma }}."
+        target="_blank"
+        class="whatsapp-btn">
+        Chat with Mark
+        </a>
+
+        <a href="https://wa.me/256706018343?text=Hello,%20I%20am%20interested%20in%20the%20{{ vehicle.year }}%20{{ vehicle.title }}%20listed%20on%20Celutamax%20Motors%20for%20UGX%20{{ vehicle.price|intcomma }}."
+        target="_blank"
+        class="whatsapp-btn">
+        Customer Support
+        </a>
+
+    </div>
+
     <br>
 
-    <!-- WhatsApp Button -->
-   <a href="https://wa.me/256708866140?text=Hello,%20I%20am%20interested%20in%20the%20{{ vehicle.year }}%20{{ vehicle.title }}%20listed%20on%20Celutamax%20Motors%20for%20UGX%20{{ vehicle.price|intcomma }}."
-target="_blank"
-style="display:inline-block;background:#25D366;color:white;padding:12px 18px;text-decoration:none;border-radius:6px;font-size:16px;margin:6px;">
-Chat with Sales person Cedric
-</a>
-
-<a href="https://wa.me/256709427045?text=Hello,%20I%20am%20interested%20in%20the%20{{ vehicle.year }}%20{{ vehicle.title }}%20listed%20on%20Celutamax%20Motors%20for%20UGX%20{{ vehicle.price|intcomma }}."
-target="_blank"
-style="display:inline-block;background:#25D366;color:white;padding:12px 18px;text-decoration:none;border-radius:6px;font-size:16px;margin:6px;">
-Chat with Sales person Mark
-</a>
-
-<a href="https://wa.me/256706018343?text=Hello,%20I%20am%20interested%20in%20the%20{{ vehicle.year }}%20{{ vehicle.title }}%20listed%20on%20Celutamax%20Motors%20for%20UGX%20{{ vehicle.price|intcomma }}."
-target="_blank"
-style="display:inline-block;background:#25D366;color:white;padding:12px 18px;text-decoration:none;border-radius:6px;font-size:16px;margin:6px;">
-Customer Support Team Castro
-</a>
-        Inquire on WhatsApp
-    </a>
-
-    <br><br>
-
-    <a href="{% url 'vehicles' %}" style="text-decoration:none;">
+    <a href="{% url 'vehicles' %}" style="text-decoration:none; font-weight:bold;">
         ← Back to Vehicles
     </a>
 

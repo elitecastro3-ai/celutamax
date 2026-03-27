@@ -1,40 +1,57 @@
 {% extends 'base.html' %}
+{% load humanize %}
 
 {% block content %}
-<h1>Our Vehicles</h1>
 
-<!-- Search Form -->
-<form method="get" action="{% url 'vehicles' %}" style="margin-bottom: 20px;">
-    <input 
-        type="text" 
-        name="q" 
-        placeholder="Search vehicles..." 
-        value="{{ request.GET.q|default:'' }}" 
-        style="padding: 8px; width: 250px;"
-    >
-    <button type="submit" style="padding: 8px 12px;">Search</button>
-</form>
+<h1 style="text-align:center; margin-top:20px;">Our Vehicles</h1>
 
-<!-- Vehicle Listings -->
+<!-- 🔍 MODERN SEARCH -->
+<div class="search-container">
+    <form method="GET" action="{% url 'vehicles' %}">
+        <input 
+            type="text" 
+            name="q" 
+            placeholder="Search vehicles..." 
+            value="{{ request.GET.q }}"
+        >
+    </form>
+</div>
+
+<!-- 🚗 VEHICLE CAR GRID -->
 {% if vehicles %}
-    <div class="vehicle-list" style="display: flex; flex-wrap: wrap; gap: 20px;">
-        {% for vehicle in vehicles %}
-            <div class="vehicle-card" style="border: 1px solid #ccc; padding: 10px; width: 250px;">
-                {% if vehicle.image %}
-                    <img src="{{ vehicle.image.url }}" alt="{{ vehicle.name }}" style="width: 100%; height: auto;">
-                {% endif %}
+<div class="car-grid">
+
+    {% for vehicle in vehicles %}
+    <a href="{% url 'vehicle_detail' vehicle.id %}" style="text-decoration:none; color:inherit;">
+        
+        <div class="car-card">
+
+            {% if vehicle.image %}
+                <img src="{{ vehicle.image.url }}" alt="{{ vehicle.title }}">
+            {% endif %}
+
+            <div style="padding:15px;">
                 <h3>{{ vehicle.title }}</h3>
-                <p>Brand: {{ vehicle.brand }}</p>
-                <p>Mileage: {{ vehicle.mileage }} km</p>
-                <p>Year: {{ vehicle.year }}</p>
-                <p>Price: UGX{{ vehicle.price }}</p>
-                <p>Description: {{ vehicle.description }}</p> 
-                <a href="{% url 'vehicle_detail' vehicle.id %}">View Details</a>
+
+                <p style="color:gray;">{{ vehicle.brand }} • {{ vehicle.year }}</p>
+
+                <p><strong>{{ vehicle.mileage }} km</strong></p>
+
+                <p style="color:#f59e0b; font-weight:bold;">
+                    UGX {{ vehicle.price|intcomma }}
+                </p>
+
             </div>
-        {% endfor %}
-    </div>
+
+        </div>
+
+    </a>
+    {% endfor %}
+
+</div>
+
 {% else %}
-    <p>No vehicles found matching your search.</p>
+<p style="text-align:center;">No vehicles found 😔</p>
 {% endif %}
 
 {% endblock %}
