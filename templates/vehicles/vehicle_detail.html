@@ -7,18 +7,25 @@
 
     <h1 style="margin-bottom:20px;">{{ vehicle.title }}</h1>
 
-    <!-- MAIN IMAGE -->
-    {% if vehicle.image %}
-        <img src="{{ vehicle.image.url }}"
-             style="width:100%; max-height:400px; object-fit:cover; border-radius:10px;">
-    {% endif %}
+    <div class="slider-container">
+    
+    <div class="slider" id="slider">
 
-    <!-- GALLERY (MULTIPLE IMAGES) -->
-    <div class="car-gallery">
+        {% if vehicle.image %}
+            <img src="{{ vehicle.image.url }}" class="slide">
+        {% endif %}
+
         {% for img in vehicle.images.all %}
-            <img src="{{ img.image.url }}" class="gallery-img">
+            <img src="{{ img.image.url }}" class="slide">
         {% endfor %}
+
     </div>
+
+    <!-- Arrows -->
+    <button class="prev" onclick="moveSlide(-1)">❮</button>
+    <button class="next" onclick="moveSlide(1)">❯</button>
+
+</div>
 
     <!-- DETAILS -->
     <div style="font-size:18px; line-height:1.8; margin-top:20px;">
