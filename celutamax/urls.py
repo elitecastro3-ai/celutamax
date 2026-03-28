@@ -5,6 +5,7 @@ from django.conf.urls.static import static
 from vehicles.views import home, vehicle_list, vehicle_detail, about, contact
 from django.contrib.sitemaps.views import sitemap
 from vehicles.sitemaps import VehicleSitemap
+from django.views.generic import TemplateView
 
 
 sitemaps = {
@@ -14,6 +15,7 @@ sitemaps = {
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("sitemap.xml", sitemap, {"sitemaps":sitemaps}, name="sitemap"),
+    path("robot.txt", TemplateView.as_view(temlate_name="robot.txt",content_type="text/plain"))
     path('', home, name='home'),   # Homepage
     path('vehicles/', vehicle_list, name='vehicles'),
     path('vehicles/<int:pk>/', vehicle_detail, name='vehicle_detail'),
