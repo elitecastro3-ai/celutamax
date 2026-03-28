@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-=ana=4*2qvhn0=@7)&k@snm=7_)wfg#57s!mlr!s%lw=ho_4zl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'False'
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 ALLOWED_HOSTS = os.environ.get(
@@ -83,8 +83,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'celutamax.wsgi.application'
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIR = [BASE_DIR / 'static']
 
 
 # Database
