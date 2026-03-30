@@ -22,11 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=ana=4*2qvhn0=@7)&k@snm=7_)wfg#57s!mlr!s%lw=ho_4zl'
-
+SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-secret-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-secret-key')
 
 ALLOWED_HOSTS = os.environ.get(
     'ALLOWED_HOSTS',
@@ -88,14 +87,17 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
+
+
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-     "default": dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+    "default": dj_database_url.config(
+        conn_max_age=600,
+        ssl_require=True
     )
-}    
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -133,13 +135,11 @@ SITE_ID = 1
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 import os
 
 MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 
@@ -163,6 +163,20 @@ STORAGES = {
     },
 } 
 
+if os.environ.get("CREATE_SUPERUSER") == "True":
+    try:
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+
+        if not User.objects.filter(username="admin").exists():
+            User.objects.create_superuser(
+                username="Elijah_Enrique",
+                email="elitecastro3@gmail.com",
+                password="elite06"
+            )
+            print("Superuser created successfully")
+    except Exception as e:
+        print("Error creating superuser:", e)
 
 
 
