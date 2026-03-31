@@ -163,20 +163,6 @@ STORAGES = {
     },
 } 
 
-if os.environ.get("CREATE_SUPERUSER") == "True":
-    try:
-        from django.contrib.auth import get_user_model
-        User = get_user_model()
-
-        if not User.objects.filter(username="admin").exists():
-            User.objects.create_superuser(
-                username="Elijah_Enrique",
-                email="elitecastro3@gmail.com",
-                password="elite06"
-            )
-            print("Superuser created successfully")
-    except Exception as e:
-        print("Error creating superuser:", e)
 
 
 
