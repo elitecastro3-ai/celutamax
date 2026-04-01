@@ -27,10 +27,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-secret-key')
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 SECRET_KEY = os.environ.get('SECRET_KEY', 'unsafe-secret-key')
 
-ALLOWED_HOSTS = os.environ.get(
-    'ALLOWED_HOSTS',
-    '127.0.0.1,localhost,celutamax-motors-brokers.onrender.com'
-).split(',')
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
